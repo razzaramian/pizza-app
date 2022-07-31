@@ -1,29 +1,30 @@
 import { useEffect } from 'react'
 
-import { getData } from 'pages/products/productSlice'
+import { getData } from 'pages/Products/productSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
-import 'pages/products/index.scss'
+import 'pages/Products/index.scss'
 const Products = () => {
-  const { products, loading } = useSelector((state) => state.productsReducer)
+  const { products, loading, error } = useSelector((state) => state.products)
 
   const disptach = useDispatch()
   useEffect(() => {
     disptach(getData())
-    console.log(products)
   }, [])
 
   if (loading) {
     return <div>Loading...</div>
   }
 
+  if (error === 'Server side error') {
+    return <div>{error}</div>
+  }
+
   return (
-    <div>
-      {products.map(({ id, name }) => {
-        return (
-          <div key={id}>{name}</div>
-        )
-      })}
+    <div className='products'>
+      <div className="products-container">
+        hello
+      </div>
     </div>
   )
 }

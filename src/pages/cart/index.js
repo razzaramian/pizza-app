@@ -1,4 +1,4 @@
-import 'pages/cart/index.scss'
+import 'pages/Cart/index.scss'
 
 const Cart = () => {
   return (

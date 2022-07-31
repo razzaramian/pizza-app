@@ -1,5 +1,5 @@
-import Cart from 'pages/cart';
-import Products from "pages/products";
+import Cart from 'pages/Cart';
+import Products from "pages/Products";
 
 export const elements = [
   {

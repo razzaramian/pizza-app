@@ -3,7 +3,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 import { Link } from 'react-router-dom'
 
-import 'components/header/index.scss'
+import 'components/Header/index.scss'
 
 const Header = () => {
   return (

@@ -1,10 +1,9 @@
-import Header from 'components/header';
-
 import { useRoutes } from 'react-router-dom';
 
+import Header from 'components/Header';
 import { elements } from 'routes';
 
-import 'app/index.scss';
+import 'components/App/index.scss';
 
 const App = () => {
   const routes = useRoutes(elements);
