@@ -1,0 +1,32 @@
+{
+  "pizza": [
+    {
+      "id": 1,
+      "name": "Margherita",
+      "descr": "Cheesy pizza 🔥",
+      "price": 12.50,
+      "img": "https://i.ibb.co/xmcr28r/margarita.png"
+    },
+    {
+      "id": 2,
+      "name": "Carbonara",
+      "descr": "Hot pizza 🔥",
+      "price": 15.50,
+      "img": "https://i.ibb.co/ZJTM5sd/carbonara.png"
+    },
+    {
+      "id": 3,
+      "name": "Venezia ",
+      "descr": "Cheesy pizza 🔥",
+      "price": 13.30,
+      "img": "https://i.ibb.co/pQ4zj8q/venecia.png"
+    },
+    {
+      "id": 4,
+      "name": "California ",
+      "descr": "Large and Hot 🔥",
+      "price": 16.99,
+      "img": "https://i.ibb.co/yNrxzjg/california.png"
+    }
+  ]
+}
