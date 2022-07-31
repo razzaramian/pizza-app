@@ -31,6 +31,22 @@
       "price": 16.99,
       "img": "https://i.ibb.co/yNrxzjg/california.png",
       "category": "hot"
+    },
+    {
+      "id": 5,
+      "name": "Pepperoni ",
+      "descr": "Extra Hot 🔥",
+      "price": 10.99,
+      "img": "https://i.ibb.co/QKfL2LR/Peperoni.png",
+      "category": "hot"
+    },
+    {
+      "id": 6,
+      "name": "Tomato",
+      "descr": "For Family 🔥",
+      "price": 19.99,
+      "img": "https://i.ibb.co/DD5Shyw/item-1001.png",
+      "category": "tomato"
     }
   ]
 }

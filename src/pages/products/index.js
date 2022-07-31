@@ -13,6 +13,7 @@ import { getData } from 'pages/Products/productSlice'
 
 const Products = () => {
   const disptach = useDispatch();
+  const [sort, setSort] = useState('');
   const [category, setCategory] = useState('');
   const { products, loading, error } = useSelector((state) => state.products);
 
@@ -22,7 +23,12 @@ const Products = () => {
 
   const filterProducts = () => {
     const filtered = products.filter((item) => {
-      return item.category !== category;
+
+      if (category === '') {
+        return products
+      }
+
+      return item.category === category;
     })
 
     return filtered.map(item => {
@@ -67,6 +73,23 @@ const Products = () => {
             </MenuItem>
             <MenuItem value='hot'>Hot</MenuItem>
             <MenuItem value='cheesy'>Cheesy</MenuItem>
+            <MenuItem value='tomato'>Tomato</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-standard-label">Sort</InputLabel>
+          <Select
+            labelId="demo-simple-select-standard-label"
+            id="demo-simple-select-standard"
+            value={sort}
+            onChange={setSort}
+            label="Sort"
+          >
+            <MenuItem value="">
+              <em>Default</em>
+            </MenuItem>
+            <MenuItem value='up'>Price Up</MenuItem>
+            <MenuItem value='down'>Price Down</MenuItem>
           </Select>
         </FormControl>
       </div>
