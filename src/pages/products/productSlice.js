@@ -31,9 +31,9 @@ export const productsSlice = createSlice({
     [getData.pending]: (state) => {
       state.loading = true
     },
-    [getData.fulfilled]: (state, { payload }) => {
+    [getData.fulfilled]: (state, action) => {
       state.loading = false
-      state.products = payload
+      state.products = action.payload
     },
     [getData.rejected]: (state, action) => {
       state.loading = false

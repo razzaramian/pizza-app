@@ -16,3 +16,20 @@ h4,
 h5 {
   margin: 0;
 }
+
+.spinner {
+  color: #FDC82F;
+  font-size: 40px;
+  transition: 1s all;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
