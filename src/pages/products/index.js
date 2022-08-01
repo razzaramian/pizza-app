@@ -9,7 +9,7 @@ import Select from '@mui/material/Select';
 
 import 'pages/Products/index.scss'
 import ProductsCard from 'components/ProductsCard'
-import { getData } from 'pages/Products/productSlice'
+import { getData } from 'redux/thunks/productSlice'
 
 const Products = () => {
   const disptach = useDispatch();
