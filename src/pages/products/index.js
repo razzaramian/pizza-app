@@ -17,24 +17,38 @@ const Products = () => {
   const [category, setCategory] = useState('');
   const { products, loading, error } = useSelector((state) => state.products);
 
-  const handleChange = (e) => {
+  const handleFilter = (e) => {
     setCategory(e.target.value);
   };
 
-  const filterProducts = () => {
+  const handleSort = (e) => {
+    setSort(e.target.value);
+  };
+
+  const currentProducts = () => {
     const filtered = products.filter((item) => {
 
-      if (category === '') {
+      if (category === '' || category === 'default') {
         return products
       }
 
       return item.category === category;
     })
 
+    if (sort === 'up') {
+      filtered.sort((a, b) => a.price - b.price)
+    } else if (sort === 'down') {
+      filtered.sort((a, b) => b.price - a.price)
+    }
+
     return filtered.map(item => {
       return <ProductsCard {...item} key={item.id} />
     })
   }
+
+  useEffect(() => {
+    currentProducts()
+  }, [sort])
 
   useEffect(() => {
     disptach(getData())
@@ -65,10 +79,10 @@ const Products = () => {
             labelId="demo-simple-select-standard-label"
             id="demo-simple-select-standard"
             value={category}
-            onChange={handleChange}
+            onChange={handleFilter}
             label="Category"
           >
-            <MenuItem value="">
+            <MenuItem value="default">
               <em>All</em>
             </MenuItem>
             <MenuItem value='hot'>Hot</MenuItem>
@@ -82,10 +96,10 @@ const Products = () => {
             labelId="demo-simple-select-standard-label"
             id="demo-simple-select-standard"
             value={sort}
-            onChange={setSort}
+            onChange={handleSort}
             label="Sort"
           >
-            <MenuItem value="">
+            <MenuItem value="default">
               <em>Default</em>
             </MenuItem>
             <MenuItem value='up'>Price Up</MenuItem>
@@ -101,7 +115,7 @@ const Products = () => {
       <div className="products-container">
         <Filters />
         <div className="products-cards">
-          {filterProducts()}
+          {currentProducts()}
         </div>
       </div>
     </div>
