@@ -47,6 +47,14 @@
       "price": 19.99,
       "img": "https://i.ibb.co/DD5Shyw/item-1001.png",
       "category": "Tomato"
+    },
+    {
+      "id": 7,
+      "name": "Traditional",
+      "descr": "Extra Tomato 🔥",
+      "price": 24.99,
+      "img": "https://i.ibb.co/yqFg5nk/pizza-PNG44092.png",
+      "category": "Tomato"
     }
   ]
 }

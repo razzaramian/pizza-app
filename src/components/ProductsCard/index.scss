@@ -1,7 +1,7 @@
 .product-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
   cursor: pointer;
   height: 300px;
@@ -9,10 +9,21 @@
   padding: 16px;
   border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
+  overflow: hidden;
 
   &:hover {
-    transform: translateY(-5px);
+    .product-price {
+      color: #FDC82F;
+    }
+
+    .product-card-img img {
+      position: absolute;
+      z-index: -1;
+      top: 40px;
+      left: 60px;
+      width: 400px;
+      transition: 1s;
+    }
   }
 
   .product-card-img {
