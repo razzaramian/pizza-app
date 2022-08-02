@@ -1,15 +1,13 @@
 import { useEffect, useState } from 'react';
 import { ImSpinner8 } from 'react-icons/im';
+import { getData } from 'redux/thunks/productSlice'
 import { useDispatch, useSelector } from 'react-redux';
 
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import Filters from 'components/Filters'
+import { CATEGORY, SORT } from 'constants';
+import ProductsCard from 'components/ProductsCard'
 
 import 'pages/Products/index.scss'
-import ProductsCard from 'components/ProductsCard'
-import { getData } from 'redux/thunks/productSlice'
 
 const Products = () => {
   const disptach = useDispatch();
@@ -25,29 +23,35 @@ const Products = () => {
     setSort(e.target.value);
   };
 
-  const currentProducts = () => {
+  const filteringProducts = () => {
     const filtered = products.filter((item) => {
-
-      if (category === '' || category === 'default') {
+      if (category === '' || category === 'Default') {
         return products
       }
 
       return item.category === category;
     })
 
-    if (sort === 'up') {
+    return filtered;
+  }
+
+  const filtered = filteringProducts();
+
+  const sortingProducts = () => {
+    if (sort === 'Price Up') {
       filtered.sort((a, b) => a.price - b.price)
-    } else if (sort === 'down') {
+    }
+    if (sort === 'Price Down') {
       filtered.sort((a, b) => b.price - a.price)
     }
 
-    return filtered.map(item => {
-      return <ProductsCard {...item} key={item.id} />
-    })
+    return filtered
   }
 
+  const currentProducts = sortingProducts()
+
   useEffect(() => {
-    currentProducts()
+    sortingProducts()
   }, [sort])
 
   useEffect(() => {
@@ -69,53 +73,17 @@ const Products = () => {
       </div>
     )
   }
-
-  const Filters = () => {
-    return (
-      <div className="products-filters">
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-standard-label">Category</InputLabel>
-          <Select
-            labelId="demo-simple-select-standard-label"
-            id="demo-simple-select-standard"
-            value={category}
-            onChange={handleFilter}
-            label="Category"
-          >
-            <MenuItem value="default">
-              <em>All</em>
-            </MenuItem>
-            <MenuItem value='hot'>Hot</MenuItem>
-            <MenuItem value='cheesy'>Cheesy</MenuItem>
-            <MenuItem value='tomato'>Tomato</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-standard-label">Sort</InputLabel>
-          <Select
-            labelId="demo-simple-select-standard-label"
-            id="demo-simple-select-standard"
-            value={sort}
-            onChange={handleSort}
-            label="Sort"
-          >
-            <MenuItem value="default">
-              <em>Default</em>
-            </MenuItem>
-            <MenuItem value='up'>Price Up</MenuItem>
-            <MenuItem value='down'>Price Down</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
-    )
-  }
-
   return (
     <div className='products'>
       <div className="products-container">
-        <Filters />
+        <div className="products-filters">
+          <Filters name='Category' value={category} onChange={handleFilter} data={CATEGORY} />
+          <Filters name='Sort' value={sort} onChange={handleSort} data={SORT} />
+        </div>
         <div className="products-cards">
-          {currentProducts()}
+          {currentProducts.map(item => {
+            return <ProductsCard {...item} key={item.id} />
+          })}
         </div>
       </div>
     </div>

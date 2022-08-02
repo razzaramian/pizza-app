@@ -6,7 +6,7 @@
       "descr": "Cheesy pizza 🔥",
       "price": 12.50,
       "img": "https://i.ibb.co/xmcr28r/margarita.png",
-      "category": "cheesy"
+      "category": "Cheesy"
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
       "descr": "Hot pizza 🔥",
       "price": 15.50,
       "img": "https://i.ibb.co/ZJTM5sd/carbonara.png",
-      "category": "hot"
+      "category": "Hot"
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "descr": "Cheesy pizza 🔥",
       "price": 13.30,
       "img": "https://i.ibb.co/pQ4zj8q/venecia.png",
-      "category": "cheesy"
+      "category": "Cheesy"
     },
     {
       "id": 4,
@@ -30,7 +30,7 @@
       "descr": "Large and Hot 🔥",
       "price": 16.99,
       "img": "https://i.ibb.co/yNrxzjg/california.png",
-      "category": "hot"
+      "category": "Hot"
     },
     {
       "id": 5,
@@ -38,7 +38,7 @@
       "descr": "Extra Hot 🔥",
       "price": 10.99,
       "img": "https://i.ibb.co/QKfL2LR/Peperoni.png",
-      "category": "hot"
+      "category": "Hot"
     },
     {
       "id": 6,
@@ -46,7 +46,7 @@
       "descr": "For Family 🔥",
       "price": 19.99,
       "img": "https://i.ibb.co/DD5Shyw/item-1001.png",
-      "category": "tomato"
+      "category": "Tomato"
     }
   ]
 }

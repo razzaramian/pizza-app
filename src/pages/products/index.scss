@@ -20,3 +20,11 @@
     width: 100%;
   }
 }
+
+@media (max-width: 500px) {
+  .products-container {
+    .products-filters {
+      justify-content: center;
+    }
+  }
+}
