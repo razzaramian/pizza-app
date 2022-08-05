@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+
 import { ImSpinner8 } from 'react-icons/im';
 import { getData } from 'redux/thunks/productSlice'
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,11 +11,13 @@ import ProductsCard from 'components/ProductsCard'
 import 'pages/Products/index.scss'
 
 const Products = () => {
+  const { products, loading, error } = useSelector((state) => state.products);
   const disptach = useDispatch();
   const [sort, setSort] = useState('');
-  const [category, setCategory] = useState('');
-  const { products, loading, error } = useSelector((state) => state.products);
+  const [pizza, setPizza] = useState([]);
+  const [category, setCategory] = useState('Default');
 
+  const DEFAULT = 'Default'
   const PRICE_UP = 'Price Up';
   const PRICE_DOWN = 'Price Down';
 
@@ -26,32 +29,26 @@ const Products = () => {
     setSort(e.target.value);
   };
 
-  const filteringProducts = () => {
-    const filtered = products.filter((item) => {
-      if (category === '' || category === 'Default') {
-        return products
+  const filteringProducts = useMemo(() => {
+    return pizza.filter((item) => {
+      if (category === DEFAULT) {
+        return true
       }
 
-      return item.category === category;
+      console.log('renderin filteringProducts')
+      return item.category === category
     })
-
-    return filtered;
-  }
-
-  const filtered = filteringProducts();
+  }, [][category])
 
   const sortingProducts = () => {
     if (sort === PRICE_UP) {
-      filtered.sort((a, b) => a.price - b.price)
+      setPizza(pizza.slice().sort((a, b) => a.price - b.price))
+    } else if (sort === PRICE_DOWN) {
+      setPizza(pizza.slice().sort((a, b) => b.price - a.price))
+    } else if (sort === DEFAULT) {
+      return setPizza(products)
     }
-    if (sort === PRICE_DOWN) {
-      filtered.sort((a, b) => b.price - a.price)
-    }
-
-    return filtered
   }
-
-  const currentProducts = sortingProducts()
 
   useEffect(() => {
     sortingProducts()
@@ -59,19 +56,24 @@ const Products = () => {
 
   useEffect(() => {
     disptach(getData())
-  }, [disptach])
+  }, [])
+
+  useEffect(() => {
+    setPizza(products)
+  }, [products])
+
 
   return (
     <div className='products'>
       <div className="products-container">
         {loading ? <ImSpinner8 className='spinner' /> : null}
-        {error === 'Server side error' ? {error} : null}
+        {error === 'Server side error' ? { error } : null}
         <div className="products-filters">
           <Filters name='Category' value={category} onChange={handleFilter} data={CATEGORY} />
           <Filters name='Sort' value={sort} onChange={handleSort} data={SORT} />
         </div>
         <div className="products-cards">
-          {currentProducts.map(item => {
+          {filteringProducts.map(item => {
             return <ProductsCard {...item} key={item.id} />
           })}
         </div>
