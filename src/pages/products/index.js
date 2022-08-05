@@ -15,6 +15,9 @@ const Products = () => {
   const [category, setCategory] = useState('');
   const { products, loading, error } = useSelector((state) => state.products);
 
+  const PRICE_UP = 'Price Up';
+  const PRICE_DOWN = 'Price Down';
+
   const handleFilter = (e) => {
     setCategory(e.target.value);
   };
@@ -38,10 +41,10 @@ const Products = () => {
   const filtered = filteringProducts();
 
   const sortingProducts = () => {
-    if (sort === 'Price Up') {
+    if (sort === PRICE_UP) {
       filtered.sort((a, b) => a.price - b.price)
     }
-    if (sort === 'Price Down') {
+    if (sort === PRICE_DOWN) {
       filtered.sort((a, b) => b.price - a.price)
     }
 
@@ -58,24 +61,11 @@ const Products = () => {
     disptach(getData())
   }, [disptach])
 
-  if (loading) {
-    return (
-      <div className="products-container">
-        <ImSpinner8 className='spinner' />
-      </div>
-    )
-  }
-
-  if (error === 'Server side error') {
-    return (
-      <div className="products-conatiner">
-        <div>{error}</div>
-      </div>
-    )
-  }
   return (
     <div className='products'>
       <div className="products-container">
+        {loading ? <ImSpinner8 className='spinner' /> : null}
+        {error === 'Server side error' ? {error} : null}
         <div className="products-filters">
           <Filters name='Category' value={category} onChange={handleFilter} data={CATEGORY} />
           <Filters name='Sort' value={sort} onChange={handleSort} data={SORT} />
