@@ -15,7 +15,7 @@ const Products = () => {
   const disptach = useDispatch();
   const [sort, setSort] = useState('');
   const [pizza, setPizza] = useState([]);
-  const [category, setCategory] = useState('Default');
+  const [category, setCategory] = useState('');
 
   const DEFAULT = 'Default'
   const PRICE_UP = 'Price Up';
@@ -31,7 +31,7 @@ const Products = () => {
 
   const filteringProducts = useMemo(() => {
     return pizza.filter((item) => {
-      if (category === DEFAULT) {
+      if (category === DEFAULT || category === '') {
         return true
       }
 
