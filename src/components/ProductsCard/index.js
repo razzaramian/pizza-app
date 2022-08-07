@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
+import { useDispatch } from 'react-redux';
 import { getId } from 'redux/slices/cartSlice'
-import { useDispatch, useSelector } from 'react-redux';
 
 import 'components/ProductsCard/index.scss'
 
@@ -28,7 +28,7 @@ const ProductsCard = ({
   return (
     <div className='product-card'>
       <div className="product-card-img">
-        <img src={img} alt={name} />
+        <img src={img} alt={name} style={{ transform: `rotate(-${counter * 10}deg)` }} />
       </div>
       <div className="product-name">
         {name} {counter}

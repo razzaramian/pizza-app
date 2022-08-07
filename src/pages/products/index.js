@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ImSpinner8 } from 'react-icons/im';
 import { getData } from 'redux/thunks/productSlice'
@@ -29,16 +29,15 @@ const Products = () => {
     setSort(e.target.value);
   };
 
-  const filteringProducts = useMemo(() => {
-    return pizza.filter((item) => {
+  const filteredProducts = () => {
+    return products.filter((item) => {
       if (category === DEFAULT || category === '') {
         return true
       }
-
-      console.log('renderin filteringProducts')
+      console.log('renderin filteredProducts')
       return item.category === category
     })
-  }, [][category])
+  }
 
   const sortingProducts = () => {
     if (sort === PRICE_UP) {
@@ -52,14 +51,22 @@ const Products = () => {
 
   useEffect(() => {
     sortingProducts()
+    // eslint-disable-next-line
   }, [sort])
 
   useEffect(() => {
+    setPizza(filteredProducts())
+    // eslint-disable-next-line
+  }, [category])
+
+  useEffect(() => {
     disptach(getData())
+    // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
     setPizza(products)
+    // eslint-disable-next-line
   }, [products])
 
 
@@ -73,7 +80,7 @@ const Products = () => {
           <Filters name='Sort' value={sort} onChange={handleSort} data={SORT} />
         </div>
         <div className="products-cards">
-          {filteringProducts.map(item => {
+          {pizza.map(item => {
             return <ProductsCard {...item} key={item.id} />
           })}
         </div>
