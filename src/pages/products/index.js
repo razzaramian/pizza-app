@@ -44,8 +44,6 @@ const Products = () => {
       setPizza(pizza.slice().sort((a, b) => a.price - b.price))
     } else if (sort === PRICE_DOWN) {
       setPizza(pizza.slice().sort((a, b) => b.price - a.price))
-    } else if (sort === DEFAULT) {
-      return setPizza(products)
     }
   }
 

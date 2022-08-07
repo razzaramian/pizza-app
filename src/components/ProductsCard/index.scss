@@ -28,7 +28,6 @@
 
     .product-card-img img {
       position: absolute;
-      z-index: -1;
       top: 40px;
       left: 60px;
       width: 400px;
@@ -55,6 +54,7 @@
 
     img {
       width: 100%;
+      z-index: 1;
     }
   }
 
