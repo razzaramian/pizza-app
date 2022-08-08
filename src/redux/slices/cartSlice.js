@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    productsId: [],
+    inCart: [],
 }
 
 export const cartSlice = createSlice({
@@ -9,7 +9,7 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         getId: (state, action) => {
-            state.productsId.push(action.payload)
+            state.inCart.push(action.payload)
         }
     }
 })

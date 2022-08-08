@@ -34,7 +34,6 @@ const Products = () => {
       if (category === DEFAULT || category === '') {
         return true
       }
-      console.log('renderin filteredProducts')
       return item.category === category
     })
   }

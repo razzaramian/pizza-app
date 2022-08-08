@@ -5,13 +5,14 @@ import { getId } from 'redux/slices/cartSlice'
 
 import 'components/ProductsCard/index.scss'
 
-const ProductsCard = ({
-  id,
-  name,
-  descr,
-  price,
-  img
-}) => {
+const ProductsCard = (props) => {
+  const {
+    id,
+    name,
+    descr,
+    price,
+    img
+  } = props;
   const disptach = useDispatch()
   const [counter, setCounter] = useState(0)
 
@@ -42,7 +43,7 @@ const ProductsCard = ({
       <div className="product-card-footer">
         <div className="product-btns">
           <button className="btn minus" onClick={() => handleCounter('dec')}>-</button>
-          <button className="btn add-to" onClick={() => disptach(getId(id))}>Add to cart</button>
+          <button className="btn add-to" onClick={() => disptach(getId(props))}>Add to cart</button>
           <button className="btn plus" onClick={() => handleCounter('inc')}>+</button>
         </div>
       </div>
