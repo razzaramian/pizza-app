@@ -5,13 +5,14 @@ import { getId } from 'redux/slices/cartSlice'
 
 import 'components/ProductsCard/index.scss'
 
-const ProductsCard = ({
-  id,
-  name,
-  descr,
-  price,
-  img
-}) => {
+const ProductsCard = (props) => {
+  const {
+    id,
+    name,
+    descr,
+    price,
+    img
+  } = props;
   const disptach = useDispatch()
   const [counter, setCounter] = useState(0)
   const { cart } = useSelector((state) => state.cart);
