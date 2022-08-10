@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getId } from 'redux/slices/cartSlice'
 
 import 'components/ProductsCard/index.scss'
@@ -14,6 +14,8 @@ const ProductsCard = ({
 }) => {
   const disptach = useDispatch()
   const [counter, setCounter] = useState(0)
+  const { cart } = useSelector((state) => state.cart);
+
 
   const handleCounter = (direction) => {
     if (direction === 'inc') {
@@ -22,6 +24,22 @@ const ProductsCard = ({
 
     if (direction === 'dec' && counter > 0) {
       setCounter(counter - 1)
+    }
+  }
+
+  const addToCart = () => {
+    const carts = {
+      ...cart,
+      [id]: counter
+    }
+
+    if (id in cart) {
+      cart.id = counter + 1000
+    }
+
+    if (counter > 0) {
+      disptach(getId(carts))
+      setCounter(0)
     }
   }
 
@@ -42,11 +60,11 @@ const ProductsCard = ({
       <div className="product-card-footer">
         <div className="product-btns">
           <button className="btn minus" onClick={() => handleCounter('dec')}>-</button>
-          <button className="btn add-to" onClick={() => disptach(getId(id))}>Add to cart</button>
+          <button className="btn add-to" onClick={() => addToCart()}>Add to cart</button>
           <button className="btn plus" onClick={() => handleCounter('inc')}>+</button>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
