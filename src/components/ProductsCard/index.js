@@ -28,14 +28,18 @@ const ProductsCard = (props) => {
     }
   }
 
+  const isProductExist = () => {
+    if (id in cart) {
+      return cart[id] + counter
+     } else {
+      return counter
+     }
+  }
+
   const addToCart = () => {
     const carts = {
       ...cart,
-      [id]: counter
-    }
-
-    if (id in cart) {
-      cart.id = counter + 1000
+      [id]: isProductExist()
     }
 
     if (counter > 0) {
