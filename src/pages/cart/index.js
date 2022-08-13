@@ -12,25 +12,38 @@ const Cart = () => {
   const getKeys = Object.keys(cart)
 
   const choosenProducts = () => {
-    const prod = products?.filter(item => {
-      if (getKeys.includes(item.id.toString())) {
-        return item
+    return products?.filter(obj => {
+      if (getKeys.includes(obj.id.toString())) {
+        return true
       }
     })
+  }
 
-    setInCart(prod)
+  const removeProduct = (id) => {
+    console.log(id)
   }
 
   useEffect(() => {
-    choosenProducts()
+    setInCart(choosenProducts)
   }, [cart])
 
   return (
     <div className='cart'>
       <div className="cart-container">
-        {inCart.map(({ id, name }) => {
+        {inCart.map(({ id, name, img }) => {
           return (
-            <div key={id}>{name}</div>
+            <div className='cart-product' key={id}>
+              <div className="cart-product-info">
+                <div className="cart-product-img">
+                  <img src={img} alt={name} />
+                </div>
+                <div className="cart-product-name">{name}</div>
+                <div className="cart-product-counter">{cart[id]}pc.</div>
+              </div>
+              <div className="cart-product-remove" onClick={() => removeProduct(id)}>
+                <button>Remove</button>
+              </div>
+            </div>
           )
         })}
       </div>

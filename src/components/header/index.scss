@@ -18,19 +18,40 @@
   &-nav {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 25px;
   }
 
   &-price {
     font-size: 20px;
+    font-weight: 600;
   }
 
   &-cart {
+    position: relative;
     cursor: pointer;
 
     .header-cart-icon {
       font-size: 30px;
       color: #000;
     }
+
+    .header-cart-counter {
+      position: absolute;
+      top: -13px;
+      right: -13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 23px;
+      width: 23px;
+      border-radius: 50%;
+      background-color: #ffffff;
+
+      span {
+        color: #000;
+        text-decoration: none;
+      }
+    }
+
   }
 }

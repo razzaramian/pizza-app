@@ -5,6 +5,9 @@ import { getId } from 'redux/slices/cartSlice'
 
 import 'components/ProductsCard/index.scss'
 
+const INC = 'inc'
+const DEC = 'dec'
+
 const ProductsCard = (props) => {
   const {
     id,
@@ -19,11 +22,11 @@ const ProductsCard = (props) => {
 
 
   const handleCounter = (direction) => {
-    if (direction === 'inc') {
+    if (direction === INC) {
       setCounter(counter + 1)
     }
 
-    if (direction === 'dec' && counter > 0) {
+    if (direction === DEC && counter > 0) {
       setCounter(counter - 1)
     }
   }
@@ -31,9 +34,9 @@ const ProductsCard = (props) => {
   const isProductExist = () => {
     if (id in cart) {
       return cart[id] + counter
-     } else {
+    } else {
       return counter
-     }
+    }
   }
 
   const addToCart = () => {

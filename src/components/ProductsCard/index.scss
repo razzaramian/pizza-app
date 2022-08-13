@@ -35,14 +35,11 @@
     }
 
     .product-card-footer {
-      .minus {
-        transform: translateX(0);
-        transition: 1s transform 0.1s;
-      }
 
+      .minus,
       .plus {
         transform: translateX(0);
-        transition: 1s transform 0.1s;
+        transition: 0.3s transform 0.1s;
       }
     }
   }
@@ -92,12 +89,20 @@
       &:hover {
         background-color: rgb(33, 33, 33);
       }
+
+      &:active {
+        background-color: green;
+      }
     }
 
     .minus,
     .plus {
       width: 30px;
       height: 30px;
+
+      &:active {
+        background-color: green;
+      }
     }
 
     .minus {
