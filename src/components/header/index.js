@@ -18,7 +18,7 @@ const Header = () => {
       </Link>
       <div className="header-nav">
         <div className="header-price">
-          $ 100
+          $ 0
         </div>
         <Link to='/cart' className="header-cart">
           <div className="header-cart-counter">

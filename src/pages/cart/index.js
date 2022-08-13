@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { removeProdcut } from 'redux/slices/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 import 'pages/Cart/index.scss'
@@ -8,6 +9,7 @@ const Cart = () => {
   const { cart } = useSelector((state) => state.cart);
   const { products } = useSelector((state) => state.products);
   const [inCart, setInCart] = useState([])
+  const dispatch = useDispatch()
 
   const getKeys = Object.keys(cart)
 
@@ -17,10 +19,6 @@ const Cart = () => {
         return true
       }
     })
-  }
-
-  const removeProduct = (id) => {
-    console.log(id)
   }
 
   useEffect(() => {
@@ -40,7 +38,7 @@ const Cart = () => {
                 <div className="cart-product-name">{name}</div>
                 <div className="cart-product-counter">{cart[id]}pc.</div>
               </div>
-              <div className="cart-product-remove" onClick={() => removeProduct(id)}>
+              <div className="cart-product-remove" onClick={() => dispatch(removeProdcut(id))}>
                 <button>Remove</button>
               </div>
             </div>
