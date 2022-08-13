@@ -12,13 +12,13 @@ const Cart = () => {
   const getKeys = Object.keys(cart)
 
   const choosenProducts = () => {
-    const prod = products.map((item) => {
-      if (getKeys.includes(item.id)) {
+    const prod = products?.filter(item => {
+      if (getKeys.includes(item.id.toString())) {
         return item
       }
     })
 
-    console.log(prod)
+    setInCart(prod)
   }
 
   useEffect(() => {
@@ -28,7 +28,11 @@ const Cart = () => {
   return (
     <div className='cart'>
       <div className="cart-container">
-        hello
+        {inCart.map(({ id, name }) => {
+          return (
+            <div key={id}>{name}</div>
+          )
+        })}
       </div>
     </div>
   )
