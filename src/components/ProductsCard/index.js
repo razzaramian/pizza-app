@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import { useDispatch, useSelector } from 'react-redux';
-import { getId } from 'redux/slices/cartSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { getId, calcTotalPrice } from 'redux/slices/cartSlice'
 
 import 'components/ProductsCard/index.scss'
 
@@ -18,7 +18,7 @@ const ProductsCard = (props) => {
   } = props;
   const disptach = useDispatch()
   const [counter, setCounter] = useState(0)
-  const { cart } = useSelector((state) => state.cart);
+  const { cart } = useSelector((state) => state.cart)
 
 
   const handleCounter = (direction) => {
@@ -33,7 +33,7 @@ const ProductsCard = (props) => {
 
   const isProductExist = () => {
     if (id in cart) {
-      return cart[id] + counter
+      return cart[id].counter + counter
     } else {
       return counter
     }
@@ -42,13 +42,19 @@ const ProductsCard = (props) => {
   const addToCart = () => {
     const carts = {
       ...cart,
-      [id]: isProductExist()
+      [id]: {
+        counter: isProductExist(),
+        price: (price * isProductExist()).toFixed(2),
+      }
     }
+
 
     if (counter > 0) {
       disptach(getId(carts))
       setCounter(0)
     }
+    disptach(calcTotalPrice())
+
   }
 
   return (

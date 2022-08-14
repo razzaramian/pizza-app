@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import 'components/Header/index.scss'
 
 const Header = () => {
-  const { cart } = useSelector((state) => state.cart);
+  const { cart, totalPrice } = useSelector((state) => state.cart);
 
   return (
     <header className='header'>
@@ -18,7 +18,7 @@ const Header = () => {
       </Link>
       <div className="header-nav">
         <div className="header-price">
-          $ 0
+          $ {totalPrice}
         </div>
         <Link to='/cart' className="header-cart">
           <div className="header-cart-counter">

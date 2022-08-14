@@ -28,22 +28,29 @@ const Cart = () => {
   return (
     <div className='cart'>
       <div className="cart-container">
-        {inCart.map(({ id, name, img }) => {
-          return (
-            <div className='cart-product' key={id}>
-              <div className="cart-product-info">
-                <div className="cart-product-img">
-                  <img src={img} alt={name} />
+        {getKeys.length ? (
+          inCart.map(({ id, name, img }) => {
+            return (
+              <div className='cart-product' key={id}>
+                <div className="cart-product-info">
+                  <div className="cart-product-img">
+                    <img src={img} alt={name} />
+                  </div>
+                  <div className="cart-product-name">{name}</div>
+                  <div className="cart-product-counter">{cart[id]}pc.</div>
                 </div>
-                <div className="cart-product-name">{name}</div>
-                <div className="cart-product-counter">{cart[id]}pc.</div>
+                <div className="cart-product-remove"
+                  onClick={() => dispatch(removeProdcut(id))}>
+                  <button>Remove</button>
+                </div>
               </div>
-              <div className="cart-product-remove" onClick={() => dispatch(removeProdcut(id))}>
-                <button>Remove</button>
-              </div>
-            </div>
-          )
-        })}
+            )
+          })
+        ) : (
+          <div className='empty'>
+            <span>Empty Cart</span>
+          </div>
+        )}
       </div>
     </div>
   )
