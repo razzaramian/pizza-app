@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { removeProdcut } from 'redux/slices/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { removeProdcut, totalPrice } from 'redux/slices/cartSlice';
+
+import SumReduce from 'components/SumReduce';
 
 import 'pages/Cart/index.scss'
 
@@ -11,18 +13,23 @@ const Cart = () => {
   const [inCart, setInCart] = useState([])
   const dispatch = useDispatch()
 
-  const getKeys = Object.keys(cart)
+  const getKeys = Object.keys(cart).map(Number)
 
   const choosenProducts = () => {
-    return products?.filter(obj => {
-      if (getKeys.includes(obj.id.toString())) {
+    return products.filter(({ id }) => {
+      if (getKeys.includes(id)) {
         return true
       }
     })
   }
 
+  const onRemove = (id) => {
+    dispatch(removeProdcut(id))
+    dispatch(totalPrice(SumReduce(cart).toFixed(2)))
+  }
+
   useEffect(() => {
-    setInCart(choosenProducts)
+    setInCart(choosenProducts())
   }, [cart])
 
   return (
@@ -37,10 +44,10 @@ const Cart = () => {
                     <img src={img} alt={name} />
                   </div>
                   <div className="cart-product-name">{name}</div>
-                  <div className="cart-product-counter">{cart[id]}pc.</div>
+                  <div className="cart-product-counter"></div>
                 </div>
                 <div className="cart-product-remove"
-                  onClick={() => dispatch(removeProdcut(id))}>
+                  onClick={() => onRemove(id)}>
                   <button>Remove</button>
                 </div>
               </div>

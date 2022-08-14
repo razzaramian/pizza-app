@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { getId, calcTotalPrice } from 'redux/slices/cartSlice'
+import { getId, totalPrice } from 'redux/slices/cartSlice'
+
+import SumReduce from 'components/SumReduce'
 
 import 'components/ProductsCard/index.scss'
 
@@ -48,13 +50,12 @@ const ProductsCard = (props) => {
       }
     }
 
-
     if (counter > 0) {
       disptach(getId(carts))
       setCounter(0)
     }
-    disptach(calcTotalPrice())
 
+    disptach(totalPrice(SumReduce(cart).toFixed(2)))
   }
 
   return (
@@ -74,7 +75,7 @@ const ProductsCard = (props) => {
       <div className="product-card-footer">
         <div className="product-btns">
           <button className="btn minus" onClick={() => handleCounter('dec')}>-</button>
-          <button className="btn add-to" onClick={() => addToCart()}>Add to cart</button>
+          <button className="btn add-to" onClick={addToCart}>Add to cart</button>
           <button className="btn plus" onClick={() => handleCounter('inc')}>+</button>
         </div>
       </div>
