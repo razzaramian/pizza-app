@@ -45,8 +45,9 @@ const ProductsCard = (props) => {
     const carts = {
       ...cart,
       [id]: {
+        // TODO: on this way we delete existing data while adding a new one, check this out
         counter: isProductExist(),
-        price: (price * isProductExist()).toFixed(2),
+        price: price * isProductExist(),
       }
     }
 
@@ -55,7 +56,7 @@ const ProductsCard = (props) => {
       setCounter(0)
     }
 
-    disptach(totalPrice(SumReduce(cart).toFixed(2)))
+    disptach(totalPrice(SumReduce(carts)))
   }
 
   return (

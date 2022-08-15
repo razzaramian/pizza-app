@@ -2,15 +2,15 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     cart: {},
-    totalPrice: 0.00
+    totalPrice: 0
 }
 
 export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        getId: (state, action) => {
-            state.cart = action.payload
+        getId: (state, {payload}) => {
+            state.cart = payload
         },
         removeProdcut: (state, action) => {
             delete state.cart[action.payload]

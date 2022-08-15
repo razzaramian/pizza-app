@@ -25,7 +25,7 @@ const Cart = () => {
 
   const onRemove = (id) => {
     dispatch(removeProdcut(id))
-    dispatch(totalPrice(SumReduce(cart).toFixed(2)))
+    dispatch(totalPrice(SumReduce(cart)))
   }
 
   useEffect(() => {
